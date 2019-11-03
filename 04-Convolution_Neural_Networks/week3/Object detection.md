@@ -4,15 +4,15 @@
 
 ​		为了建立对象检测，你需要先学习对象定位。
 
-![](C:\Users\Think\Desktop\吴恩达笔记\04-Convolution Neural Networks\week3\images\Object_localization1.PNG)
+![](https://github.com/Qu-rixin/deeplearning.ai-notes/blob/master/04-Convolution_Neural_Networks/week3/images/Object_localization1.PNG)
 
 ​		如果你想要定位图中的汽车，为了实现这个，你 可以改变你的神经网络，通过得到更多的输出单位，使得这个神经网络可以输出一个边框，所以，具体地说，你的神经网络要输出额外4个数字。在视频中，图片左上角坐标为（0，0），右下角坐标为（1，1），为了指定图中红色长方形边框，我们需要指定边框的中点，所以你的训练集不仅仅包含对象的类别标签，而且也包含4个额外数字。
 
-![](C:\Users\Think\Desktop\吴恩达笔记\04-Convolution Neural Networks\week3\images\Object_localization2.PNG)
+![](https://github.com/Qu-rixin/deeplearning.ai-notes/blob/master/04-Convolution_Neural_Networks/week3/images/Object_localization2.PNG)
 
 ​		目标标签y的定义如下，是一个向量，其中pc表示这里包含一个对象的概率，c1、c2、c3告诉我们这个是哪个类。
 
-![](C:\Users\Think\Desktop\吴恩达笔记\04-Convolution Neural Networks\week3\images\Object_localization3.PNG)
+![](https://github.com/Qu-rixin/deeplearning.ai-notes/blob/master/04-Convolution_Neural_Networks/week3/images/Object_localization3.PNG)
 
 ## 2. Landmark detection
 
@@ -22,13 +22,13 @@
 
 ​		如果你对人体姿势检测感兴趣，你也可以定义一些关键的位置建立一个神经网络去标识人的姿势的关键位置以及通过这个神经网络输出所有图中标识的点，你也可以让神经网络输出人的姿势。当然为了实现这个，你也需要指出这些关键特征就像l1x和l1y ...。
 
-![](C:\Users\Think\Desktop\吴恩达笔记\04-Convolution Neural Networks\week3\images\Landmark detection.PNG)
+![](https://github.com/Qu-rixin/deeplearning.ai-notes/blob/master/04-Convolution_Neural_Networks/week3/images/Landmark%20detection.PNG)
 
 ## 3. Object detection
 
 ​		假设你想搭建一个汽车检测算法，你可以先创建一个有标记训练数据集，x和对应的y，训练集包含紧密裁剪的汽车样例，然后你就可以训练一个卷积神经网络，当你训练好了这个神经网络，你就可以把它用在滑动窗口检测中。
 
-![](C:\Users\Think\Desktop\吴恩达笔记\04-Convolution Neural Networks\week3\images\Object_detection1.PNG)
+![](https://github.com/Qu-rixin/deeplearning.ai-notes/blob/master/04-Convolution_Neural_Networks/week3/images/Object_detection1.PNG)
 
 ​		如果你有一张这样的测试图像，你要做的是先选择一个如图所示的窗口尺寸，然后将一个小的矩形窗口输入到这个卷积神经网络，也就是说，只取小的红色框内的图像，把它输入到卷积神经网络中，然后让卷积神经网络做一个预测，假设对于如图红色框的区域，它会说那个红色小框里没有车，在滑动窗口检测算法，然后你要做的就是输入传递第二个图像把这个移动了一点的红色小框范围内的图像输入卷积神经网络，一直继续，直到你滑动窗口遍历了图像的所有位置，我们这里用了一个比较大的滑动步长（stride）。但基本思路是遍历所有这个红色窗口尺寸的图像区域，将这些小的裁剪出来的图像传递到卷积神经网络中，然后将一定步长下每个位置分类为0或1，现在，遍历完一次，你再重复一次，不过这次用更大的窗口，也就是说现在你取一个较大的区域，根据卷积神经网络的要求调整这个区域的大小，然后把它输入到卷积神经网络中，把这个窗口在一定步长下继续滑动遍历整个图像，然后你可以用更大的窗口再执行第三次。
 
@@ -38,7 +38,7 @@
 
 ​		不过滑动窗口检测有一个很大的缺陷，就是它的计算成本，因为你裁剪出了不同的正方形的图像，并让每个图像都单独通过卷积神经网络的运算，如果你使用了一个不密集的步长，一个很大的步长那么通过卷积神经网络的窗口数量会减少，但是比较粗粒度会影响算法表现，而如果你用了比较细粒度，也就是很小的步长，那么这些小区域的数量会巨大，将它们全部通过卷积神经网络意味着很高的计算成本，滑动窗口检测慢的不可行，而且除非你用很细粒度，也就是很小的步长，你最终很难在图像中精确地定位到目标。
 
-![](C:\Users\Think\Desktop\吴恩达笔记\04-Convolution Neural Networks\week3\images\Object_detection2.PNG)
+![](https://github.com/Qu-rixin/deeplearning.ai-notes/blob/master/04-Convolution_Neural_Networks/week3/images/Object_detection2.PNG)
 
 ​		幸运的是，计算成本问题有一个很好的解决方案，更确切地说，滑动窗口目标检测器，可以用卷积的形式来更高效的实现。
 
@@ -50,7 +50,7 @@
 
 ​		接下来，为了实现下一个卷积层，我们将实现一个1x1的卷积，最后我们还将用一个1x1的过滤器，然后是softmax激活，以输出一个1x1x4的体。
 
-![](C:\Users\Think\Desktop\吴恩达笔记\04-Convolution Neural Networks\week3\images\Convolutional_implementation_of_sliding_Windows1.PNG)
+![](https://github.com/Qu-rixin/deeplearning.ai-notes/blob/master/04-Convolution_Neural_Networks/week3/images/Convolutional_implementation_of_sliding_Windows1.PNG)
 
 ​		让我们来看一下你怎样用卷积的形式来实现滑动窗口目标识别。
 
@@ -58,7 +58,7 @@
 
 ​		具体来说，你可以这么做，你可以运行卷积神经网络，用同样的参数，最后你可以发现这个蓝色的1x1x4的子区域，包含的就是对左上的这个14x14的部分图像做卷积运算的结果，这个右上角的1x1x4的体包含右上部分的结果。那么这个过程所做的就是这个卷积形式的实现做的，就是不去强行在输入图像的4个子图像上分别进行前向传播，而是把4个合并成一个前向传播运算，从而利用这4个14x14的图像块的共同区域，共享了大量运算。
 
-![](C:\Users\Think\Desktop\吴恩达笔记\04-Convolution Neural Networks\week3\images\Convolutional_implementation_of_sliding_Windows2.PNG)
+![](https://github.com/Qu-rixin/deeplearning.ai-notes/blob/master/04-Convolution_Neural_Networks/week3/images/Convolutional_implementation_of_sliding_Windows2.PNG)
 
 ​		不过，这个算法仍然有一个弱点，那就是窗边框口的定位并不精确。
 
@@ -66,7 +66,7 @@
 
 ​		如何精准的地预测边界框。在滑动窗口检测中，你通过这些预先决定的窗口来扫过整个图像，在这种情况下，没有一个边框与车的位置恰好吻合，另一方面，看上去一个更为精确的边框实际上不是一个正方形。	
 
-![](C:\Users\Think\Desktop\吴恩达笔记\04-Convolution Neural Networks\week3\images\Bounding_box_predictions1.PNG)
+![](https://github.com/Qu-rixin/deeplearning.ai-notes/blob/master/04-Convolution_Neural_Networks/week3/images/Bounding_box_predictions1.PNG)
 
 ​		YOLO算法就是一个比较好的能精确输出边界框的算法。
 
@@ -76,11 +76,11 @@
 
 ​		这个算法的优势在于，该神经网络可以精确地输出如下边框。
 
-![](C:\Users\Think\Desktop\吴恩达笔记\04-Convolution Neural Networks\week3\images\Bounding_box_predictions2.PNG)
+![](https://github.com/Qu-rixin/deeplearning.ai-notes/blob/master/04-Convolution_Neural_Networks/week3/images/Bounding_box_predictions2.PNG)
 
 ​		需要注意的是bx、by、bw、bh是相对网格指定的。
 
-![](C:\Users\Think\Desktop\吴恩达笔记\04-Convolution Neural Networks\week3\images\Bounding_box_predictions3.PNG)
+![](https://github.com/Qu-rixin/deeplearning.ai-notes/blob/master/04-Convolution_Neural_Networks/week3/images/Bounding_box_predictions3.PNG)
 
 ## 6. Intersection over union
 
@@ -88,7 +88,7 @@
 
 ​		交并比做的就是它计算了这两个边界框的交集除以并集的比率。交并比是指先计算交集的大小，然后除以并集的面积，按计算机视觉的原则，如果交并比大于0.5，你的结果就会被判断为正确的，如果预测的和真实的边框完美重合了，交并比（IoU）就是1。
 
-![](C:\Users\Think\Desktop\吴恩达笔记\04-Convolution Neural Networks\week3\images\Intersection_over_union.PNG)
+![](https://github.com/Qu-rixin/deeplearning.ai-notes/blob/master/04-Convolution_Neural_Networks/week3/images/Intersection_over_union.PNG)
 
 ## 7. Non-max suppression
 
@@ -96,7 +96,7 @@
 
 ​		图中19x19的网格，现在从技术上来说，这个车只有一个中间点，那么它应该被分配到一个网格单元中，所以从技术上来说，只有一个单元格预测出有一辆车，实际上，对每一个网格，你都进行目标分类和定位方法，也许一辆车会有多个网格确定车的中心点。
 
-![](C:\Users\Think\Desktop\吴恩达笔记\04-Convolution Neural Networks\week3\images\Non-max_suppression1.PNG)
+![](https://github.com/Qu-rixin/deeplearning.ai-notes/blob/master/04-Convolution_Neural_Networks/week3/images/Non-max_suppression1.PNG)
 
 ​		因为你对每个网格使用图像分类和定位的算法，有可能许多网格会认为“我的pc值很大，即有个目标在我的网格中”，而不是有两个网格，在这391个网格中认为它们检测到了目标，所以当你运行算法时，对每个目标，你也许会得到多个检测结果，所以非极大值抑制要做的是清理这些检测。
 
@@ -106,15 +106,15 @@
 
 ​		非最大值的意思是你将要输出有着最大可能性的分类判断，而抑制那些非最大可能性的邻近的方框。
 
-![](C:\Users\Think\Desktop\吴恩达笔记\04-Convolution Neural Networks\week3\images\Non-max_suppression2.PNG)
+![](https://github.com/Qu-rixin/deeplearning.ai-notes/blob/master/04-Convolution_Neural_Networks/week3/images/Non-max_suppression2.PNG)
 
-![](C:\Users\Think\Desktop\吴恩达笔记\04-Convolution Neural Networks\week3\images\Non-max_suppression3.PNG)
+![](https://github.com/Qu-rixin/deeplearning.ai-notes/blob/master/04-Convolution_Neural_Networks/week3/images/Non-max_suppression3.PNG)
 
-![](C:\Users\Think\Desktop\吴恩达笔记\04-Convolution Neural Networks\week3\images\Non-max_suppression4.PNG)
+![](https://github.com/Qu-rixin/deeplearning.ai-notes/blob/master/04-Convolution_Neural_Networks/week3/images/Non-max_suppression4.PNG)
 
 ​		在本例中，将问题简化为只做汽车检测，所以去掉c1、c2、c3，而且现在假设每一个19x19网格的输出你将会获得如图的输出预测，那么为了运用非极大值抑制，首先要做的是丢掉所有方框，丢掉所有预测值pc小于或等于某个门限的边界值，这样就作用于所有的低概率输出框。接下来，没有被去掉或处理的，你将重复地选出有着最大概率的最大pc值的边框，将它作为一个预测结果。接下来，你要丢掉其他剩余边界框，即那些不被认为是预测结果的并且之前也没有去掉的边界框。
 
-![](C:\Users\Think\Desktop\吴恩达笔记\04-Convolution Neural Networks\week3\images\Non-max_suppression5.PNG)
+![](https://github.com/Qu-rixin/deeplearning.ai-notes/blob/master/04-Convolution_Neural_Networks/week3/images/Non-max_suppression5.PNG)
 
 ## 8. Anchor boxes
 
@@ -124,13 +124,13 @@
 
 ​		anchor box的思路是这样的，预先定义两个不同形状的anchor box，你要做的就是把预测结果和这两个anchor box关联起来，一般来说，你可能会用更多的anchor box，你需要重新定义一个y如图右边所示。
 
-![](C:\Users\Think\Desktop\吴恩达笔记\04-Convolution Neural Networks\week3\images\Anchor_boxes1.PNG)
+![](https://github.com/Qu-rixin/deeplearning.ai-notes/blob/master/04-Convolution_Neural_Networks/week3/images/Anchor_boxes1.PNG)
 
 ​		总结：用anchor box之前，你做的是这个，对于训练集图像中的每个对象，都根据那个对象中点位置，分配到对应的格子里。现在用到anchor box概念是这么做的，现在每个对象都和之前一样分配到同一格子中，分配到对象中点所在格子中，但是它还分配到一个和对象形状交并比最高的anchor box，所以这里有两个anchor box，你就看看哪个anchor box和实际边框交并比高，不管选的是哪一个，这个对象不只分配到一个格子里，而是分配到一个（格子，anchor box）对，这就是对象在目标标签中的编码方式。
 
-![](C:\Users\Think\Desktop\吴恩达笔记\04-Convolution Neural Networks\week3\images\Anchor_boxes2.PNG)
+![](https://github.com/Qu-rixin/deeplearning.ai-notes/blob/master/04-Convolution_Neural_Networks/week3/images/Anchor_boxes2.PNG)
 
-![](C:\Users\Think\Desktop\吴恩达笔记\04-Convolution Neural Networks\week3\images\Anchor_boxes3.PNG)
+![](https://github.com/Qu-rixin/deeplearning.ai-notes/blob/master/04-Convolution_Neural_Networks/week3/images/Anchor_boxes3.PNG)
 
 ​		我们建立anchor box这个概念是为了处理两个对象出现在同一格子的情况，实践中这种情况很少发生，特别是如果你用的是19x19而不是3x3的网格。也许设立anchor box的好处就是它能让你的学习算法能够更有针对性，特别是如果你的数据集有很高的对象和很宽的对象。
 
@@ -140,15 +140,15 @@
 
 ​		首先来看如何构造你的训练集，假设你要训练一个算法去检测三种对象，你还需要显式指定完整的背景类别，如果你要用两个anchor box，那么输出如图中y，要构造训练集，你需要遍历9个格子，然后构成对应的目标向量y。
 
-![](C:\Users\Think\Desktop\吴恩达笔记\04-Convolution Neural Networks\week3\images\YOLO_algorithm1.PNG)
+![](https://github.com/Qu-rixin/deeplearning.ai-notes/blob/master/04-Convolution_Neural_Networks/week3/images/YOLO_algorithm1.PNG)
 
 ​		接下来看看算法是如何预测的。
 
-![](C:\Users\Think\Desktop\吴恩达笔记\04-Convolution Neural Networks\week3\images\YOLO_algorithm2.PNG)
+![](https://github.com/Qu-rixin/deeplearning.ai-notes/blob/master/04-Convolution_Neural_Networks/week3/images/YOLO_algorithm2.PNG)
 
 ​		最后你要跑一下这个非极大值抑制，如果你使用两个anchor box，那么对于9个格子中任意一个都会有两个预测的边界框，其中一个的概率pc很低，注意有一些边界框可以超出所在格子的高度和宽度，接下来你将抛弃概率低的预测，如果你有多个对象需要检测，那么你要做的是，对于每个类别单独运行非极大值抑制，处理预测结果是那个类别的边界框。
 
-![](C:\Users\Think\Desktop\吴恩达笔记\04-Convolution Neural Networks\week3\images\YOLO_algorithm3.PNG)
+![](https://github.com/Qu-rixin/deeplearning.ai-notes/blob/master/04-Convolution_Neural_Networks/week3/images/YOLO_algorithm3.PNG)
 
 ## 10. Region proposals（Optional）
 
@@ -156,11 +156,11 @@
 
 ​		R-CNN算法是带区域的卷积网络，这个算法尝试选择出一些区域，在这些区域上运行卷积网络上是有意义的，所以这里不再针对每个滑动窗口跑检测算法，而是只选择一些窗口，在少数窗口上运行卷积神经网络。选出候选区域的方法是运行图像分割算法，分割的结果如图右边所示，为了找出可能存在对象的区域，需要先找出各个色块，然后在所有色块上放置边界框，然后在这些色块上运行分类器，这样需要处理的位置可能要少得多，可以减少运行分类器的时间。现在看来R-CNN还是很慢的。
 
-![](C:\Users\Think\Desktop\吴恩达笔记\04-Convolution Neural Networks\week3\images\Region_proposals1.PNG)
+![](https://github.com/Qu-rixin/deeplearning.ai-notes/blob/master/04-Convolution_Neural_Networks/week3/images/Region_proposals1.PNG)
 
 ​		现在看来R-CNN还是很慢的，所以有一系列的研究工作去改进这个算法。基本的R-CNN算法是使用某些算法求出候选区域，然后对每个候选区域跑一下分类器，每个区域会输出一个标签，并输出一个边界框，这样你就能在确实存在的区域得到一个精确的边界框。现在R-CNN算法的一个缺点是太慢了，所以这些年有一些对R-CNN算法的改进工作。Fast R-CNN用卷积实现了滑动窗口，所以Fast R-CNN用的是滑动窗口的一个卷积实现，这显著提升了R-CNN的速度，事实证明，fast R-CNN的一个问题是得到候选区域的聚类步骤仍然非常缓慢，所以另一个研究组提出了Faster R-CNN使用的是卷积神经网络而不是传统的图像分割算法来获得候选区域色块，结果更快。
 
 ​		但是更快的R-CNN还是比YOLO算法慢很多。
 
-![](C:\Users\Think\Desktop\吴恩达笔记\04-Convolution Neural Networks\week3\images\Region_proposals2.PNG)
+![](https://github.com/Qu-rixin/deeplearning.ai-notes/blob/master/04-Convolution_Neural_Networks/week3/images/Region_proposals2.PNG)
 
