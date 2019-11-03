@@ -2,15 +2,15 @@
 
 ## 1. Why look at case studies？
 
-![](C:\Users\Think\Desktop\吴恩达笔记\04-Convolution Neural Networks\week2\images\Why_look_at_case_studies.PNG)
+![](https://github.com/Qu-rixin/deeplearning.ai-notes/blob/master/04-Convolution_Neural_Networks/week2/images/Why_look_at_case_studies.PNG)
 
 ## 2. Classic networks
 
-![](C:\Users\Think\Desktop\吴恩达笔记\04-Convolution Neural Networks\week2\images\LeNet-5.PNG)
+![](https://github.com/Qu-rixin/deeplearning.ai-notes/blob/master/04-Convolution_Neural_Networks/week2/images/LeNet-5.PNG)
 
-![](C:\Users\Think\Desktop\吴恩达笔记\04-Convolution Neural Networks\week2\images\AlexNet.PNG)
+![](https://github.com/Qu-rixin/deeplearning.ai-notes/blob/master/04-Convolution_Neural_Networks/week2/images/AlexNet.PNG)
 
-![](C:\Users\Think\Desktop\吴恩达笔记\04-Convolution Neural Networks\week2\images\VGG-16.PNG)
+![](https://github.com/Qu-rixin/deeplearning.ai-notes/blob/master/04-Convolution_Neural_Networks/week2/images/VGG-16.PNG)
 
 ## 3. Residual Networks(ResNets)
 
@@ -22,25 +22,25 @@
 
 ​		使用残差块让你可以训练更深的神经网络，而你建立一个ResNet的方法就是通过大量的这些残差块堆叠起来形成一个深层网络。
 
-![](C:\Users\Think\Desktop\吴恩达笔记\04-Convolution Neural Networks\week2\images\ResBlock.PNG)
+![](https://github.com/Qu-rixin/deeplearning.ai-notes/blob/master/04-Convolution_Neural_Networks/week2/images/ResBlock.PNG)
 
-![](C:\Users\Think\Desktop\吴恩达笔记\04-Convolution Neural Networks\week2\images\ResNet.PNG)
+![](https://github.com/Qu-rixin/deeplearning.ai-notes/blob/master/04-Convolution_Neural_Networks/week2/images/ResNet.PNG)
 
 ## 4. Why ResNets work?
 
 ​		残差网络有效的主要原因是这些额外层学习起恒等函数非常简单，几乎总能保证它不会影响总体的表现，甚至许多时候可以提升网络的表现，神经网络中另一个值得讨论的细节是在图中红线部分，我们假定两项的维度是相同的，如果维度不同，我们做的就是增加一个额外的矩阵，它可以是一个学习到的矩阵或者是固定的矩阵。
 
-![](C:\Users\Think\Desktop\吴恩达笔记\04-Convolution Neural Networks\week2\images\Why_ResNets_work1.PNG)
+![](https://github.com/Qu-rixin/deeplearning.ai-notes/blob/master/04-Convolution_Neural_Networks/week2/images/Why_ResNets_work1.PNG)
 
-![](C:\Users\Think\Desktop\吴恩达笔记\04-Convolution Neural Networks\week2\images\Why_ResNets_work2.PNG)
+![](https://github.com/Qu-rixin/deeplearning.ai-notes/blob/master/04-Convolution_Neural_Networks/week2/images/Why_ResNets_work2.PNG)
 
 ## 5. Network in Network and 1x1 convolutions
 
 ​		对1x1卷积的一种理解是它本质上是一个完全连接的神经网络，逐一作用于这36个不同的位置，这个完全连接的神经网络所做的就是它接受32个数的输入，然后输出过滤器的数个输出值，然后对这36个位置中的每一个都进行相同的操作。
 
-![](C:\Users\Think\Desktop\吴恩达笔记\04-Convolution Neural Networks\week2\images\Network_in_Network1.PNG)
+![](https://github.com/Qu-rixin/deeplearning.ai-notes/blob/master/04-Convolution_Neural_Networks/week2/images/Network_in_Network1.PNG)
 
-![](C:\Users\Think\Desktop\吴恩达笔记\04-Convolution Neural Networks\week2\images\Network_in_Network2.PNG)
+![](https://github.com/Qu-rixin/deeplearning.ai-notes/blob/master/04-Convolution_Neural_Networks/week2/images/Network_in_Network2.PNG)
 
 ​		1x1卷积的应用：缩小nh和nw可以使用池化层，缩小nc可以使用1x1卷积，从而达到在网络中减少计算量。
 
@@ -50,27 +50,27 @@
 
 ​		这是inception网络的核心，并且这个网络最基础的一个特点就是，你不用去只挑选一个卷积核的大小或pooling，你可以所有可能都做，然后把的所有的输出结果都连接起来，然后让神经网络去学习它想要用到的参数，以及它想要用到的卷积核大小。
 
-![](C:\Users\Think\Desktop\吴恩达笔记\04-Convolution Neural Networks\week2\images\Inception1.PNG)
+![](https://github.com/Qu-rixin/deeplearning.ai-notes/blob/master/04-Convolution_Neural_Networks/week2/images/Inception1.PNG)
 
 ​		inception网络的问题：计算成本问题。
 
-![](C:\Users\Think\Desktop\吴恩达笔记\04-Convolution Neural Networks\week2\images\Inception2.PNG)
+![](https://github.com/Qu-rixin/deeplearning.ai-notes/blob/master/04-Convolution_Neural_Networks/week2/images/Inception2.PNG)
 
 ​		第二种方法中，我们先将这个较大的输入减小成一个较小的中间值，这个中间层叫瓶颈层，运算成本从1.2亿次运算减小到了大概1240万次运算。
 
-![](C:\Users\Think\Desktop\吴恩达笔记\04-Convolution Neural Networks\week2\images\Inception3.PNG)
+![](https://github.com/Qu-rixin/deeplearning.ai-notes/blob/master/04-Convolution_Neural_Networks/week2/images/Inception3.PNG)
 
 ​		你只要合理的实现这个瓶颈层，你既可以缩小输入张量的维度又不会影响到整体性能，还能节省计算成本。
 
 ## 7. Inception Network
 
-![](C:\Users\Think\Desktop\吴恩达笔记\04-Convolution Neural Networks\week2\images\Inception_Network1.PNG)
+![](https://github.com/Qu-rixin/deeplearning.ai-notes/blob/master/04-Convolution_Neural_Networks/week2/images/Inception_Network1.PNG)
 
-![](C:\Users\Think\Desktop\吴恩达笔记\04-Convolution Neural Networks\week2\images\Inception_Network2.PNG)
+![](https://github.com/Qu-rixin/deeplearning.ai-notes/blob/master/04-Convolution_Neural_Networks/week2/images/Inception_Network2.PNG)
 
 ​		额外的旁枝作用是它把隐层作为输入来做预测。
 
-![](C:\Users\Think\Desktop\吴恩达笔记\04-Convolution Neural Networks\week2\images\Inception_Network3.PNG)
+![](https://github.com/Qu-rixin/deeplearning.ai-notes/blob/master/04-Convolution_Neural_Networks/week2/images/Inception_Network3.PNG)
 
 # Practical advice for using ConvNets
 
@@ -88,7 +88,7 @@
 
 ​		最后如果你有许多数据，你可以用该开源网络和权重，用它们初始化整个网络然后训练。
 
-![](C:\Users\Think\Desktop\吴恩达笔记\04-Convolution Neural Networks\week2\images\Transfer_learning.PNG)
+![](https://github.com/Qu-rixin/deeplearning.ai-notes/blob/master/04-Convolution_Neural_Networks/week2/images/Transfer_learning.PNG)
 
 ## 3. Data augmentation
 
@@ -98,19 +98,19 @@
 
 ​		第二类常用的数据增强方式是色彩变换。
 
-![](C:\Users\Think\Desktop\吴恩达笔记\04-Convolution Neural Networks\week2\images\Data_augmentation1.PNG)
+![](https://github.com/Qu-rixin/deeplearning.ai-notes/blob/master/04-Convolution_Neural_Networks/week2/images/Data_augmentation1.PNG)
 
 ​		一种常见的数据增强方法是，通过一个线程用来加载数据并作失真处理，然后传递给其他线程来做深度学习训练，通常这两部分可以并行。
 
-![](C:\Users\Think\Desktop\吴恩达笔记\04-Convolution Neural Networks\week2\images\Data_augmentation2.PNG)
+![](https://github.com/Qu-rixin/deeplearning.ai-notes/blob/master/04-Convolution_Neural_Networks/week2/images/Data_augmentation2.PNG)
 
 ## 4. The state of computer vision
 
 ​		你可以认为大多数机器学习问题是从拥有相对较少数据到拥有大量数据之间的问题。
 
-![](C:\Users\Think\Desktop\吴恩达笔记\04-Convolution Neural Networks\week2\images\The_state_of_computer_vision1.PNG)
+![](https://github.com/Qu-rixin/deeplearning.ai-notes/blob/master/04-Convolution_Neural_Networks/week2/images/The_state_of_computer_vision1.PNG)
 
-![](C:\Users\Think\Desktop\吴恩达笔记\04-Convolution Neural Networks\week2\images\The_state_of_computer_vision2.PNG)
+![](https://github.com/Qu-rixin/deeplearning.ai-notes/blob/master/04-Convolution_Neural_Networks/week2/images/The_state_of_computer_vision2.PNG)
 
-![](C:\Users\Think\Desktop\吴恩达笔记\04-Convolution Neural Networks\week2\images\The_state_of_computer_vision3.PNG)
+![](https://github.com/Qu-rixin/deeplearning.ai-notes/blob/master/04-Convolution_Neural_Networks/week2/images/The_state_of_computer_vision3.PNG)
 
